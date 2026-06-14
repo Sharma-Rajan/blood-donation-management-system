@@ -1,0 +1,70 @@
+<%- include('partials/header', { pageTitle, activePage }) %>
+<section class="section-block">
+  <div class="container narrow-container">
+    <div class="section-heading text-center">
+      <span class="eyebrow">Search Donor</span>
+      <h1>Find a Matching Donor</h1>
+      <p>Filter by blood group and city to locate suitable donor records quickly.</p>
+    </div>
+
+    <form class="card-panel search-form" action="/search" method="GET">
+      <div class="form-field">
+        <label for="blood_group">Blood Group</label>
+        <select id="blood_group" name="blood_group">
+          <option value="">Any blood group</option>
+          <% bloodGroups.forEach((group) => { %>
+            <option value="<%= group %>" <%= bloodGroup === group ? 'selected' : '' %>><%= group %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="city">City</label>
+        <input id="city" name="city" type="text" placeholder="Enter city name" value="<%= city %>">
+      </div>
+      <div class="form-actions align-end">
+        <button class="btn btn-primary" type="submit">Search Donor</button>
+        <a class="btn btn-secondary" href="/search">Reset</a>
+      </div>
+    </form>
+
+    <% if (searched) { %>
+      <div class="table-card">
+        <% if (donors.length) { %>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Blood Group</th>
+                  <th>City</th>
+                  <th>Phone Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% donors.forEach((donor) => { %>
+                  <tr>
+                    <td><%= donor.name %></td>
+                    <td><span class="badge"><%= donor.blood_group %></span></td>
+                    <td><%= donor.city %></td>
+                    <td><%= donor.phone %></td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        <% } else { %>
+          <div class="empty-state">
+            <h2>No donors found</h2>
+            <p>Try another blood group or city combination.</p>
+          </div>
+        <% } %>
+      </div>
+    <% } else { %>
+      <div class="empty-state muted">
+        <h2>Search results will appear here</h2>
+        <p>Use the form above to search for registered donors.</p>
+      </div>
+    <% } %>
+  </div>
+</section>
+<%- include('partials/footer') %>

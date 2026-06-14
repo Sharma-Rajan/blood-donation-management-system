@@ -1,0 +1,61 @@
+<%- include('partials/header', { pageTitle, activePage }) %>
+<section class="section-block">
+  <div class="container narrow-container">
+    <div class="section-heading text-center">
+      <span class="eyebrow">Donor Registration</span>
+      <h1>Register a New Donor</h1>
+      <p>Enter accurate information so the donor can be contacted quickly in an emergency.</p>
+    </div>
+
+    <% if (successMessage) { %>
+      <div class="alert alert-success"><%= successMessage %></div>
+    <% } %>
+
+    <% if (errorMessage) { %>
+      <div class="alert alert-error"><%= errorMessage %></div>
+    <% } %>
+
+    <form class="card-panel form-grid" action="/register" method="POST" data-donor-form novalidate>
+      <div class="form-field">
+        <label for="name">Full Name</label>
+        <input id="name" name="name" type="text" placeholder="Enter full name" value="<%= formData.name %>" required>
+        <small class="field-error" data-error-for="name"></small>
+      </div>
+
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="Enter email address" value="<%= formData.email %>" required>
+        <small class="field-error" data-error-for="email"></small>
+      </div>
+
+      <div class="form-field">
+        <label for="phone">Phone Number</label>
+        <input id="phone" name="phone" type="tel" inputmode="numeric" placeholder="10 to 15 digits" value="<%= formData.phone %>" required>
+        <small class="field-error" data-error-for="phone"></small>
+      </div>
+
+      <div class="form-field">
+        <label for="blood_group">Blood Group</label>
+        <select id="blood_group" name="blood_group" required>
+          <option value="">Select blood group</option>
+          <% bloodGroups.forEach((group) => { %>
+            <option value="<%= group %>" <%= formData.bloodGroup === group ? 'selected' : '' %>><%= group %></option>
+          <% }) %>
+        </select>
+        <small class="field-error" data-error-for="blood_group"></small>
+      </div>
+
+      <div class="form-field full-width">
+        <label for="city">City</label>
+        <input id="city" name="city" type="text" placeholder="Enter city name" value="<%= formData.city %>" required>
+        <small class="field-error" data-error-for="city"></small>
+      </div>
+
+      <div class="full-width form-actions">
+        <button class="btn btn-primary" type="submit">Register Donor</button>
+        <a class="btn btn-secondary" href="/search">Search Donor</a>
+      </div>
+    </form>
+  </div>
+</section>
+<%- include('partials/footer') %>

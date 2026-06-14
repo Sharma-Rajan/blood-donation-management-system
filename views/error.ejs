@@ -1,0 +1,12 @@
+<%- include('partials/header', { pageTitle, activePage }) %>
+<section class="section-block">
+  <div class="container narrow-container">
+    <div class="empty-state card-panel">
+      <span class="eyebrow">Error</span>
+      <h1><%= pageTitle %></h1>
+      <p><%= message %></p>
+      <a class="btn btn-primary" href="/">Return Home</a>
+    </div>
+  </div>
+</section>
+<%- include('partials/footer') %>

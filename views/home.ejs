@@ -1,0 +1,90 @@
+<%- include('partials/header', { pageTitle, activePage }) %>
+<section class="hero-section">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Academic Web Project</span>
+      <h1>Blood Donation Management System</h1>
+      <p>
+        A compact, responsive web application for donor registration, donor search,
+        and admin-side donor management built with HTML, CSS, Vanilla JavaScript,
+        Node.js, Express.js, and MySQL.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/register">Register as Donor</a>
+        <a class="btn btn-secondary" href="/search">Search Donor</a>
+      </div>
+      <div class="stat-strip">
+        <div>
+          <strong>3</strong>
+          <span>Core user flows</span>
+        </div>
+        <div>
+          <strong>100%</strong>
+          <span>Responsive layout</span>
+        </div>
+        <div>
+          <strong>1</strong>
+          <span>Simple deployment path</span>
+        </div>
+      </div>
+    </div>
+    <aside class="hero-panel card-panel">
+      <h2>Why this system matters</h2>
+      <ul class="check-list">
+        <li>It reduces time spent finding matching donors during urgent cases.</li>
+        <li>It stores donor information in a structured MySQL database.</li>
+        <li>It gives the admin a central dashboard to manage registrations.</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">Awareness</span>
+      <h2>Blood Donation Awareness</h2>
+      <p>
+        A healthy donation culture depends on awareness, trust, and fast access to donor data.
+      </p>
+    </div>
+    <div class="feature-grid">
+      <article class="info-card">
+        <h3>One donation can save lives</h3>
+        <p>Regular blood donation helps hospitals maintain a ready supply for emergencies and surgeries.</p>
+      </article>
+      <article class="info-card">
+        <h3>Search by blood group and city</h3>
+        <p>Matching donors quickly becomes easier when the database is organised and searchable.</p>
+      </article>
+      <article class="info-card">
+        <h3>Admin control</h3>
+        <p>The admin dashboard keeps the records clean by allowing review and deletion of invalid entries.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section-block muted-block">
+  <div class="container roadmap-grid">
+    <div>
+      <span class="eyebrow">Project Flow</span>
+      <h2>How the application works</h2>
+      <ol class="flow-list">
+        <li>User opens the home page and reads the awareness section.</li>
+        <li>Donor fills the registration form and the data is stored in MySQL.</li>
+        <li>Search page helps users locate donors by blood group and city.</li>
+        <li>Admin logs in, reviews all donors, and can delete outdated records.</li>
+      </ol>
+    </div>
+    <div class="mini-card">
+      <h3>Quick Navigation</h3>
+      <p>Use the menu above to move between registration, search, and admin pages.</p>
+      <div class="hero-actions compact-actions">
+        <a class="btn btn-primary" href="/register">Get Started</a>
+        <a class="btn btn-secondary" href="/admin/login">Admin Login</a>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include('partials/footer') %>
