@@ -1,29 +1,22 @@
 const express = require('express');
 const homeController = require('../controllers/homeController');
 const adminController = require('../controllers/adminController');
-const db = require('../config/db');
 
 const router = express.Router();
 
-// Temporary health check - remove after debugging
+// Diagnostic: pure ping, no DB, no EJS
+router.get('/ping', (req, res) => {
+  res.json({ pong: true, time: new Date().toISOString(), env: process.env.DB_HOST || 'NOT SET' });
+});
+
+// Diagnostic: DB health check
 router.get('/health', async (req, res) => {
+  const db = require('../config/db');
   try {
     const [rows] = await db.execute('SELECT 1 AS ok');
-    res.json({
-      status: 'ok',
-      db: 'connected',
-      host: process.env.DB_HOST || 'NOT SET',
-      dbName: process.env.DB_NAME || 'NOT SET',
-      result: rows
-    });
+    res.json({ status: 'ok', db: 'connected', host: process.env.DB_HOST || 'NOT SET' });
   } catch (err) {
-    res.status(500).json({
-      status: 'error',
-      db: 'failed',
-      host: process.env.DB_HOST || 'NOT SET',
-      error: err.message,
-      code: err.code
-    });
+    res.status(500).json({ status: 'error', error: err.message, code: err.code });
   }
 });
 
