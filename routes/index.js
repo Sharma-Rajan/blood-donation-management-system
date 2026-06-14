@@ -1,8 +1,31 @@
 const express = require('express');
 const homeController = require('../controllers/homeController');
 const adminController = require('../controllers/adminController');
+const db = require('../config/db');
 
 const router = express.Router();
+
+// Temporary health check - remove after debugging
+router.get('/health', async (req, res) => {
+  try {
+    const [rows] = await db.execute('SELECT 1 AS ok');
+    res.json({
+      status: 'ok',
+      db: 'connected',
+      host: process.env.DB_HOST || 'NOT SET',
+      dbName: process.env.DB_NAME || 'NOT SET',
+      result: rows
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'error',
+      db: 'failed',
+      host: process.env.DB_HOST || 'NOT SET',
+      error: err.message,
+      code: err.code
+    });
+  }
+});
 
 router.get('/', homeController.renderHome);
 router.get('/register', homeController.renderRegister);
